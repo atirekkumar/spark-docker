@@ -16,6 +16,12 @@ USER root
 
 RUN apt-get --assume-yes install python3
 
+# unchecked dependency issue related to pycairo exists in the base image.
+# To resolve them, run the following commands:
+# Source: https://github.com/3b1b/manim/issues/751
+RUN apt-get --assume-yes install pkg-config
+RUN apt-get --assume-yes install libcairo2-dev
+
 # Warnings while running .py file (none of them affect performance)
 # https://stackoverflow.com/questions/65463877/pyspark-illegal-reflective-access-operation-when-executed-in-terminal
 # https://stackoverflow.com/questions/19943766/hadoop-unable-to-load-native-hadoop-library-for-your-platform-warning
