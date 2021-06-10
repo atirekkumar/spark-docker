@@ -17,13 +17,15 @@ COPY to-be-copied/ ./
 # necessary to install dependencies using pip and use apt-get install
 USER root
 
-RUN apt-get --assume-yes install python3
+RUN apt-get --assume-yes --no-install-recommends install python3
 
 # unchecked dependency issue related to pycairo exists in the base image.
 # To resolve them, run the following commands:
 # Source: https://github.com/3b1b/manim/issues/751
-RUN apt-get --assume-yes install pkg-config
-RUN apt-get --assume-yes install libcairo2-dev
+RUN apt-get --assume-yes --no-install-recommends install pkg-config
+RUN apt-get --assume-yes --no-install-recommends install libcairo2-dev
+# RUN apt-get --assume-yes --no-install-recommends install python3-pip
+# RUN pip3 install pycairo
 
 # Warnings while running .py file (none of them affect performance)
 # https://stackoverflow.com/questions/65463877/pyspark-illegal-reflective-access-operation-when-executed-in-terminal
